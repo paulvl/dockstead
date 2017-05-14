@@ -1,0 +1,23 @@
+#!/bin/bash  
+
+if [ -z "$1" ]; then
+        echo "Dockstead: debe de especificar una acción"
+else
+        if [ "$1" == "install" ]; then
+                sudo cp dockstead /usr/local/bin/dockstead
+        elif [ "$1" == "submodule" ]; then
+                git submodule add https://github.com/paulvl/dockstead.git docker-folder
+        elif [ "$1" == "clone" ]; then
+                git clone https://github.com/paulvl/dockstead.git docker-folder
+        elif [ "$1" == "up" ]; then
+                cd docker-folder && docker-compose up -d nginx mysql phpmyadmin
+        elif [ "$1" == "down" ]; then
+                cd docker-folder && docker-compose down
+        elif [ "$1" == "status" ]; then
+                cd docker-folder && docker-compose ps
+        elif [ "$1" == "ssh" ]; then
+                cd docker-folder && docker-compose exec --user=laradock workspace bash
+        else
+                echo "Dockstead: no existe dicha acción"
+        fi
+fi
