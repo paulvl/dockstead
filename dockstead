@@ -11,6 +11,12 @@ else
                 git clone https://github.com/paulvl/dockstead.git docker-folder
         elif [ "$1" == "up" ]; then
                 cd docker-folder && docker-compose up -d nginx mysql phpmyadmin
+        elif [ "$1" == "run" ]; then                
+                if [ -z "$2" ]; then
+                        echo "Dockstead: debe de especificar un contenedor"
+                else
+                        cd docker-folder && docker-compose up -d "$2"
+                fi
         elif [ "$1" == "down" ]; then
                 cd docker-folder && docker-compose down
         elif [ "$1" == "status" ]; then

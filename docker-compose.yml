@@ -132,6 +132,15 @@ services:
             # for mariadb container
             # - "mariadb:db"
 
+### Redis Container #########################################
+
+    redis:
+        build: ./redis
+        volumes_from:
+            - volumes_data
+        ports:
+            - "6379:6379"
+
 ### Databases Data Container ################################
 
     volumes_data:
@@ -140,7 +149,7 @@ services:
             - ./data/mysql:/var/lib/mysql
             # - ./data/postgres:/var/lib/postgresql/data
             - ./data/memcached:/var/lib/memcached
-            # - ./data/redis:/data
+            - ./data/redis:/data
             # - ./data/neo4j:/var/lib/neo4j/data
             # - ./data/mongo:/data/db
             # - ./data/aerospike:/opt/aerospike/data
