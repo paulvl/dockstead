@@ -103,6 +103,15 @@ services:
         ports:
             - "3306:3306"
 
+### MongoDB Container #######################################
+
+    mongo:
+        build: ./mongo
+        ports:
+            - "27017:27017"
+        volumes_from:
+            - volumes_data
+
 
 ### Memcached Container #####################################
 
@@ -151,7 +160,7 @@ services:
             - ./data/memcached:/var/lib/memcached
             - ./data/redis:/data
             # - ./data/neo4j:/var/lib/neo4j/data
-            # - ./data/mongo:/data/db
+            - ./data/mongo:/data/db
             # - ./data/aerospike:/opt/aerospike/data
             - ./data/sessions:/sessions
             # - ./data/caddy:/root/.caddy

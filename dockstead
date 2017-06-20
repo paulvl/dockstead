@@ -17,6 +17,12 @@ else
                 else
                         cd docker-folder && docker-compose up -d "$2"
                 fi
+        elif [ "$1" == "build" ]; then                
+                if [ -z "$2" ]; then
+                        echo "Dockstead: debe de especificar un contenedor"
+                else
+                        cd docker-folder && docker-compose build "$2"
+                fi
         elif [ "$1" == "down" ]; then
                 cd docker-folder && docker-compose down
         elif [ "$1" == "status" ]; then
